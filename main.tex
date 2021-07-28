@@ -21,14 +21,23 @@
 
 \begin{abstract}
 \noindent
-We aim to give an expository account of a complete proof of the classical Brill-Noether theorem using techniques coming from Tropcical Geometry.
+We aim to give an expository account of a complete proof of the classical Brill-Noether theorem using techniques coming from Tropical Geometry.
 \end{abstract}
-
 \section{Introduction}
-
-Your introduction goes here! Simply start writing your document and use the Recompile button to view the updated PDF preview. Examples of commonly used commands and features are listed below, to help you get started.
-
-Once you're familiar with the editor, you can find various project setting in the Overleaf menu, accessed via the button in the very top left of the editor. To view tutorials, user guides, and further documentation, please visit our \href{https://www.overleaf.com/learn}{help library}, or head to our plans page to \href{https://www.overleaf.com/user/subscription/plans}{choose your plan}.
+Given a smooth projective curve 
+\section{From Curves to Graphs}
+\subsection{Definitions}
+Our goal in this section is to develop analogs of classical notions from the theory of algebraic curves for (metric) graphs. 
+\newline
+\newline
+The main combinatorial objects which we will use to set up our analogs with algebraic curves are $\textit{metric graphs}$. First, by a weighted graph, we mean a graph in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, $\Gamma(G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. The definition of a divisor on a metric graph is completely analogous to the definition of a divisor on a smooth projective curve - a finite integer linear combination of points. The defintion of a rational function on a metric graph is slightly more involved. 
+\newline
+\newline
+In particular, every metric graph, as we have defined them, may naturally be viewed as a tropical curve. 
+\newline
+\newline
+Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. 
+\subsection{Specialization Lemma}
 
 \section{Some examples to get started}
 
@@ -106,7 +115,7 @@ To change the spell check language, simply open the Overleaf menu at the top lef
 
 \subsection{How to add Citations and a References List}
 
-You can simply upload a \verb|.bib| file containing your BibTeX entries, created with a tool such as JabRef. You can then cite entries from it, like this: \cite{greenwade93}. Just remember to specify a bibliography style, as well as the filename of the \verb|.bib|. You can find a \href{https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex}{video tutorial here} to learn more about BibTeX.
+You can simply upload a \verb|.bib| file containing your BibTeX entries, created with a tool such as JabRef. You can then cite entries from it, like this: \cite{baker08}. Just remember to specify a bibliography style, as well as the filename of the \verb|.bib|. You can find a \href{https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex}{video tutorial here} to learn more about BibTeX.
 
 If you have an \href{https://www.overleaf.com/user/subscription/plans}{upgraded account}, you can also import your Mendeley or Zotero library directly as a \verb|.bib| file, via the upload menu in the file-tree.
 
@@ -115,6 +124,6 @@ If you have an \href{https://www.overleaf.com/user/subscription/plans}{upgraded 
 We hope you find Overleaf useful, and do take a look at our \href{https://www.overleaf.com/learn}{help library} for more tutorials and user guides! Please also let us know if you have any feedback using the Contact Us link at the bottom of the Overleaf menu --- or use the contact form at \url{https://www.overleaf.com/contact}.
 
 \bibliographystyle{alpha}
-\bibliography{sample}
+\bibliography{references}
 
 \end{document}
