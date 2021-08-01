@@ -27,16 +27,19 @@ We aim to give an expository account of a complete proof of the classical Brill-
 Given a smooth projective curve 
 \section{From Curves to Graphs}
 \subsection{Definitions}
-Our goal in this section is to develop analogs of classical notions from the theory of algebraic curves for (metric) graphs. 
+Our goal in this section is to develop analogs of classical notions from the theory of algebraic curves for so called metric graphs. Metric graphs are essentially combinatorial which are interpreted topologically. They may also naturally be viewed as tropical curves, although the not every tropical curve arises in such a manner. 
 \newline
 \newline
-The main combinatorial objects which we will use to set up our analogs with algebraic curves are $\textit{metric graphs}$. First, by a weighted graph, we mean a graph in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, $\Gamma(G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. The definition of a divisor on a metric graph is completely analogous to the definition of a divisor on a smooth projective curve - a finite integer linear combination of points. The defintion of a rational function on a metric graph is slightly more involved. 
+The main combinatorial objects which we will use to set up our analogs with algebraic curves are $\textit{metric graphs}$. First, by a weighted graph, we mean a graph in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, $\Gamma (G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. The definition of a divisor on a metric graph is completely analogous to the definition of a divisor on a smooth projective curve a finite integer linear combination of points. The defintion of a rational function on a metric graph is slightly more involved, 
+\newline
+\newline
+Defining the notion of the rank of a divisor on a $\Gamma$ is slightly more complicated. Recall that in the case of algebraic curves defined over some field $k$, the rank of a divisor $D$, denoted $r(D)$, is defined to be one less than the $k$ dimension of the vector space $H^{0}(X, \mathcal{O}_X(D))$, i.e. it is the dimension of the associated projective space $PH^{0}(X, \mathcal{O}_X(D))$. Thus $r(D)$ is the dimension of the projective space which is the target of the morphism associated to the line bundle $\mathcal{O}_X(D)$. For metric graphs, we run into the problem 
 \newline
 \newline
 In particular, every metric graph, as we have defined them, may naturally be viewed as a tropical curve. 
 \newline
 \newline
-Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. 
+Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. The analog of meromorphic functions on a smooth projective curve over the complex numbers (or more generally algebraic rational functions on a smooth projective curve over an arbitrary algebraically closed field) will be played by $\textit{piecewise-linear}$ functions on the metric graph $\Gamma$, which are defined as follows. Given such a piecewise linear function $\phi$ on $\Gamma$, we want to associate to $\phi$ a divisor $\text{div}(\phi)$ on $\Gamma$, in much the same way that we can associate a divisor to any non-zero rational function on a smooth project curve. Divisors of this form on $\Gamma$ will play the role of principal divisors. 
 \subsection{Specialization Lemma}
 
 \section{Some examples to get started}
