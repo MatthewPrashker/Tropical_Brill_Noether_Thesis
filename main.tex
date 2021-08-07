@@ -11,10 +11,21 @@
 % Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{tikz-cd}
+
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 \title{Applications of Tropical Geometry to the Theory of Algebraic Curves}
 \author{Matthew Prashker}
+
+
+% Theorems, Lemmas, and Definitions Settings
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
 
 \begin{document}
 \maketitle
@@ -25,28 +36,47 @@ We aim to give an expository account of a complete proof of the classical Brill-
 \end{abstract}
 \section{Introduction}
 Given a smooth projective curve 
-\section{From Curves to Graphs}
+\section{Analogies between Curves and Graphs}
 \subsection{Definitions}
-Our goal in this section is to develop analogs of classical notions from the theory of algebraic curves for so called metric graphs. Metric graphs are essentially combinatorial which are interpreted topologically. They may also naturally be viewed as tropical curves, although the not every tropical curve arises in such a manner. 
+Our goal in this section is to develop analogs for classical notions from the theory of algebraic curves for so called $\textit{metric graphs}$. Metric graphs are essentially combinatorial objects which are interpreted topologically. First, by a weighted graph, we mean a connected multigraph without loops, in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, denoted by $\Gamma (G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. We always view such weighted graphs up to equivalence, where two such graphs are equivalent if they admit a common length preserving sub-division. These metric graphs will play the role of algebraic curves for us, so they will be central objects in what follows. In fact, such a metric graph can naturally be viewed as a so called tropical curves as in [ref], although the latter is a more general type of object.  
 \newline
 \newline
-The main combinatorial objects which we will use to set up our analogs with algebraic curves are $\textit{metric graphs}$. First, by a weighted graph, we mean a graph in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, $\Gamma (G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. The definition of a divisor on a metric graph is completely analogous to the definition of a divisor on a smooth projective curve a finite integer linear combination of points. The defintion of a rational function on a metric graph is slightly more involved, 
+Given a metric graph $\Gamma$, we want a notion of a divisor and a rational function on $\Gamma$. A divisor is simply defined to be an element of the free abelian group on the points of $\Gamma$, and an effective divisor is one with all non-negative coefficients. The definition of a rational function is slightly more complicated. As motivation for the definition, we look at rational functions on algebraic curves. Such rational functions can be locally expressed as the ratio of two polynomials. In the tropical setting, multiplication is replaced by addition, and addition is replaced by the $\textit{max}$ operation, so the natural analog for a rational function on a metric graph is a piecewise linear function (with finitely many pieces) with integer slopes. We denote the space of rational functions on a metric graph $\Gamma$ by $\mathcal{M}(\Gamma)$. Note that we can always replace $G$ by some sub-division to assume without loss of generality that $f$ is affine on the interior of each edge of $G$. In this case, we see that the associated divisor $(f)$ of some $f\in \mathcal{M}(\Gamma)$ is always supported on the vertices of $\Gamma$. Whenever we are considering a divisor on some metric graph, we always assume that we are working with a model of the metric graph in which the divisor is supported on the vertices of the graph. 
 \newline
 \newline
-Defining the notion of the rank of a divisor on a $\Gamma$ is slightly more complicated. Recall that in the case of algebraic curves defined over some field $k$, the rank of a divisor $D$, denoted $r(D)$, is defined to be one less than the $k$ dimension of the vector space $H^{0}(X, \mathcal{O}_X(D))$, i.e. it is the dimension of the associated projective space $PH^{0}(X, \mathcal{O}_X(D))$. Thus $r(D)$ is the dimension of the projective space which is the target of the morphism associated to the line bundle $\mathcal{O}_X(D)$. For metric graphs, we run into the problem 
+It is a classical fact that on a Riemann surface, the sum of the zeros and poles, counted with appropriate multiplicities, is zero. On a metric graph, we have the following
+\begin{lemma}
+Let $\Gamma$ be a metric graph and $f\in \mathcal{M}(\Gamma)$. Then $\text{deg}((f)) = 0$
+\end{lemma}
+$\textbf{Proof.}$ Take an equivalent subdivision of $G$ in which $f$ is affine on the interior of each edge. Then for every edge $e$ which is directed from $v_1$ to $v_2$ with the slope of $f$ on the interior of $e$ given by $n$, we see that $e$ contributes $n$ to $v_2$ and $-n$ to $v_1$ in the sum defining $\text{deg}((f))$. 
+\begin{remark}
+Whenever we consider a divisor on some metric graph $\Gamma$, we always assume that we are working with a model of $\Gamma$ with the property that the divisor is supported on the vertices of $\Gamma$. 
+\end{remark}
+Defining the notion of the rank of a divisor on a $\Gamma$ is slightly more complicated. Recall that in the case of an algebraic curve $X$ defined over some field $k$, the rank of a divisor $D$, denoted $r(D)$, is defined to be one less than the $k$ dimension of the vector space $H^{0}(X, \mathcal{O}_X(D))$, i.e. it is the dimension of the associated projective space $PH^{0}(X, \mathcal{O}_X(D))$. Equivalently, it is the dimension of the vector space of rational functions $f$ on $X$ such that $(f) - D$ is effective. If we try to make the analogous definition for a metric graph $\Gamma$, we run into the problem that the set of piecewise linear functions $\phi$ on $\Gamma$ with $(\phi) - D$ effective is not a vector space. (Give an example). Instead, we can use the following alternative definition of the rank of a divisor on $X$ to motivate the definition of the rank of a divisor on a metric graph. Given a divisor $D$, we can consider the associated line bundle $\mathcal{L}(D)$. Then $D$ has rank $r$ iff given any divisor $D^{\prime}$ of degree $r$, we can find some section $s\in H^{0}(X, \mathcal{L}(D))$ such that $(s) - D^{\prime}$ is effective. Concretely, in the case when all $r$ points are distinct, this means we can find some global section $s$ of $\mathcal{L}(D)$ which vanishes at these $r$ points. In other words, a divisor $D$ has rank at least $r$ iff for every divisor $D^{\prime}$ of degree $r$, the complete linear system $|D - D^{\prime}|$ is non-empty. 
 \newline
 \newline
 In particular, every metric graph, as we have defined them, may naturally be viewed as a tropical curve. 
 \newline
 \newline
 Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. The analog of meromorphic functions on a smooth projective curve over the complex numbers (or more generally algebraic rational functions on a smooth projective curve over an arbitrary algebraically closed field) will be played by $\textit{piecewise-linear}$ functions on the metric graph $\Gamma$, which are defined as follows. Given such a piecewise linear function $\phi$ on $\Gamma$, we want to associate to $\phi$ a divisor $\text{div}(\phi)$ on $\Gamma$, in much the same way that we can associate a divisor to any non-zero rational function on a smooth project curve. Divisors of this form on $\Gamma$ will play the role of principal divisors. 
-\subsection{Specialization Lemma}
-
-\section{Some examples to get started}
-
-\subsection{How to create Sections and Subsections}
-
-Simply use the section and subsection commands, as in this example document! With Overleaf, all the formatting and numbering is handled automatically according to the template you've chosen. If you're using Rich Text mode, you can also create new section and subsections via the buttons in the editor toolbar.
+\section{Specialization Lemma}
+Our goal here is to state and prove Baker's Specialization Lemma from \cite{baker08} Throughout this section, we let $R$ denote a discrete valuation ring, with field of fractions $K$ and residue field $\kappa$, which for simplicity we assume is algebraically closed. We also give ourselves a smooth projective curve $X$ over $K$. We want to fill in a diagram of the form
+\[
+\begin{tikzcd}
+X \arrow[d] \arrow[r, hook]    & \mathcal{X} \arrow[d] & \mathcal{X}_{\kappa} \arrow[d] \arrow[l, hook'] \\
+\text{Spec}(K) \arrow[r, hook] & \text{Spec}(R)        & \text{Spec}(\kappa) \arrow[l, hook']   \end{tikzcd}
+\]
+such that $\mathcal{X}$, which we refer to as the total space of a family of curves over $\text{Spec}(R)$, is regular, and the special fiber $\mathcal{X}_{\kappa}$ has smooth irreducible components $\{C_1, \cdots C_k\}$ and has only nodes as singularities. Such a $\mathcal{X}$ is called a $\textit{regular semistable model}$ of the curve $X$. The fact that $\mathcal{X}_{\kappa}$ has this property implies that we can associate to it a graph, called the dual graph, as follows. 
+\newline
+\newline
+We will need the following lemma on extending line bundles from the generic fiber in order to define Baker's Specialization Map:
+\begin{lemma}
+Notation as above, any line bundle $L$ on the generic fiber $X$ extends to a line bundle $\mathcal{L}$ on the total space $\mathcal{X}$. Furthermore, such an extension is unique up to twisting by components of the special fiber, i.e. is of the form $\mathcal{L}\otimes_{\mathcal{O}_{\mathcal{X}}}\mathcal{O}_{\mathcal{X}}(C_i)$ after fixing one extension $\mathcal{L}$.  
+\end{lemma}
+\textbf{Proof.} Hello
+\newline
+\newline
+The reason we need to be considering metric graphs as opposed to just ordinary graphs has to do with ramification. 
 
 \subsection{How to include Figures}
 
@@ -59,20 +89,6 @@ Note that your figure will automatically be placed in the most appropriate place
 \includegraphics[width=0.3\textwidth]{frog.jpg}
 \caption{\label{fig:frog}This frog was uploaded via the file-tree menu.}
 \end{figure}
-
-\subsection{How to add Tables}
-
-Use the table and tabular environments for basic tables --- see Table~\ref{tab:widgets}, for example. For more information, please see this help article on \href{https://www.overleaf.com/learn/latex/tables}{tables}. 
-
-\begin{table}
-\centering
-\begin{tabular}{l|r}
-Item & Quantity \\\hline
-Widgets & 42 \\
-Gadgets & 13
-\end{tabular}
-\caption{\label{tab:widgets}An example table.}
-\end{table}
 
 \subsection{How to add Comments and Track Changes}
 
@@ -94,12 +110,6 @@ You can make lists with automatic numbering \dots
 \item and like this.
 \end{itemize}
 
-\subsection{How to write Mathematics}
-
-\LaTeX{} is great at typesetting mathematics. Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-\[S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-      = \frac{1}{n}\sum_{i}^{n} X_i\]
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
 
 
 \subsection{How to change the margins and paper size}
