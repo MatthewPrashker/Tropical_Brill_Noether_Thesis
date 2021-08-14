@@ -37,6 +37,7 @@ We aim to give an expository account of a complete proof of the classical Brill-
 \section{Introduction}
 Given a smooth projective curve 
 \section{Analogies between Curves and Graphs}
+\label{analog}
 \subsection{Definitions}
 Our goal in this section is to develop analogs for classical notions from the theory of algebraic curves for so called $\textit{metric graphs}$. Metric graphs are essentially combinatorial objects which are interpreted topologically. First, by a weighted graph, we mean a connected multigraph without loops, in which each edge is assigned a positive real number. Associated to such a metric graph $G$, we get a compact connected topological space, denoted by $\Gamma (G)$, obtained by viewing edges of $G$ as line segments of distance given by the weight of that edge. We always view such weighted graphs up to equivalence, where two such graphs are equivalent if they admit a common length preserving sub-division. These metric graphs will play the role of algebraic curves for us, so they will be central objects in what follows. In fact, such a metric graph can naturally be viewed as a so called tropical curves as in [ref], although the latter is a more general type of object.  
 \newline
@@ -60,82 +61,54 @@ In particular, every metric graph, as we have defined them, may naturally be vie
 \newline
 Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. The analog of meromorphic functions on a smooth projective curve over the complex numbers (or more generally algebraic rational functions on a smooth projective curve over an arbitrary algebraically closed field) will be played by $\textit{piecewise-linear}$ functions on the metric graph $\Gamma$, which are defined as follows. Given such a piecewise linear function $\phi$ on $\Gamma$, we want to associate to $\phi$ a divisor $\text{div}(\phi)$ on $\Gamma$, in much the same way that we can associate a divisor to any non-zero rational function on a smooth project curve. Divisors of this form on $\Gamma$ will play the role of principal divisors. 
 \section{Specialization Lemma}
-Our goal here is to state and prove Baker's Specialization Lemma from \cite{baker08} Throughout this section, we let $R$ denote a discrete valuation ring, with field of fractions $K$ and residue field $\kappa$, which for simplicity we assume is algebraically closed. We also give ourselves a smooth projective curve $X$ over $K$. We want to fill in a diagram of the form
+Our goal in this section is to define Baker's specialization map and state and prove his Specialization Lemma from \cite{baker08}, which will be our main tool for relating geometric information about a curve to certain combinatorial information. First, by way of setup, throughout this section we let $R$ denote a complete discrete valuation ring,  with field of fractions $K$ and algebrically closed residue field $\kappa$. We also give ourselves a smooth, projective, geometrically connected curve $X$ over $K$, which is our main geometric object of interest. We want to fill in a diagram of the form
 \[
 \begin{tikzcd}
 X \arrow[d] \arrow[r, hook]    & \mathcal{X} \arrow[d] & \mathcal{X}_{\kappa} \arrow[d] \arrow[l, hook'] \\
 \text{Spec}(K) \arrow[r, hook] & \text{Spec}(R)        & \text{Spec}(\kappa) \arrow[l, hook']   \end{tikzcd}
 \]
-such that $\mathcal{X}$, which we refer to as the total space of a family of curves over $\text{Spec}(R)$, is regular, and the special fiber $\mathcal{X}_{\kappa}$ has smooth irreducible components $\{C_1, \cdots C_k\}$ and has only nodes as singularities. Such a $\mathcal{X}$ is called a $\textit{regular semistable model}$ of the curve $X$. The fact that $\mathcal{X}_{\kappa}$ has this property implies that we can associate to it a graph, called the dual graph, as follows. 
+such that $\mathcal{X}$, which we think of as the total space of an infinitesimal family of curves over $\text{Spec}(R)$, is regular and flat over $\text{Spec}(R)$, and the special fiber $\mathcal{X}_{\kappa}$ is reduced with only ordinary double points as singularities and has smooth irreducible components $\{C_1, \cdots C_k\}$. Such a $\mathcal{X}$ is called a $\textit{strongly regular semistable model}$ of the curve $X$ (\textit{strong} refers to the smoothness of the irreducible components $C_i$). Both the regularity and the flatness of $\mathcal{X}$ over $\text{Spec}(R)$ will be used crucially in order to define the specialization map, as we will explain. 
+\newline
+\newline
+The combinatorial information referenced in the previous paragraph will be the so-called $\textit{dual graph}$ of the special fiber $\mathcal{X}_{\kappa}$. This graph, denoted $G(\mathcal{X}_{\kappa})$, has one vertex $v_i$ for each component $C_i$, and one edge between vertices $v_i$ and $v_j$ for each point of intersection of the components $C_i$ and $C_j$. Note that because each component $C_i$ is smooth by assumption, the graph $G(\mathcal{X}_{\kappa})$ has no loops, although it may have multiple edges, as per our conventions in [$\ref{analog}$]
 \newline
 \newline
 We will need the following lemma on extending line bundles from the generic fiber in order to define Baker's Specialization Map:
 \begin{lemma}
 Notation as above, any line bundle $L$ on the generic fiber $X$ extends to a line bundle $\mathcal{L}$ on the total space $\mathcal{X}$. Furthermore, such an extension is unique up to twisting by components of the special fiber, i.e. is of the form $\mathcal{L}\otimes_{\mathcal{O}_{\mathcal{X}}}\mathcal{O}_{\mathcal{X}}(C_i)$ after fixing one extension $\mathcal{L}$.  
 \end{lemma}
-\textbf{Proof.} Hello
+\textbf{Proof.} We first show the existence of an extension of $L$ to the total space $X$. We need the fact that on regular schemes, there is a  Because $X$ is smooth, $L$ is uniquely determined by a Weil Divisor on $X$. We may then consider the Zariski closure of this Weil Divisor in $\mathcal{X}$. Because $\mathcal{X}$ is regular, there is a one-to-one correspondence between Weil Divisors and line bundles on $\mathcal{X}$. Thus this Zariski closure corresponds to some line bundle.
+\newline
+\newline
+To see the uniqueness up to twisting part of the lemma, note that the Zariski closure can only include some extra "vertical" divisors. Under the correspondence, these extra vertical divisors exactly correspond to twisting by these divisors. 
+\newline
+\newline
+We also need the following lemma on comparing the degrees of the restrictions of line bundles on $\mathcal{X}$ to the generic and special fibers:
+\begin{lemma}
+Notation as above, let $\mathcal{L}$ be a line bundle on $\mathcal{X}$. Then we have the equality
+\[
+\text{deg}(\mathcal{L}|_{X}) = \text{deg}(\mathcal{L}_{\mathcal{X}|_{\kappa}})
+\]
+\end{lemma}
+\textbf{Proof.} Using Riemann-Roch on the smooth curve $X$, we have 
+\[
+\text{deg}(\mathcal{L}|_X)= \mathcal{X}(\mathcal{L}_X) + g - 1
+\]
+Because $\mathcal{X}$ is flat over $\text{Spec}(R)$, using the fact that the Euler characteristic of line bundle is constant for flat familes, we have 
+\[
+\mathcal{X}(\mathcal{L}|_X) = \mathcal{X}(\mathcal{L}_{\mathcal{X}_{\mathcal{\kappa}}})
+\]
+By considering the pullback of $\mathcal{L}|_{\mathcal{X}_{\kappa}}$ to the normalization of the special fiber, we conclude that 
+\[
+\mathcal{X}(\mathcal{L}_{\mathcal{X}_{\mathcal{\kappa}}}) = \sum_{i = 1}^{k}\mathcal{X}(\mathcal{L}_{C_i}) = k - 
+\sum_{i = 1}^{k}g(C_i)
+\]
+\newline
+\newline
+But because $\mathcal{X}_{\kappa}$ is reduced, we have 
 \newline
 \newline
 The reason we need to be considering metric graphs as opposed to just ordinary graphs has to do with ramification. 
-
-\subsection{How to include Figures}
-
-First you have to upload the image file from your computer using the upload link in the file-tree menu. Then use the includegraphics command to include it in your document. Use the figure environment and the caption command to add a number and a caption to your figure. See the code for Figure \ref{fig:frog} in this section for an example.
-
-Note that your figure will automatically be placed in the most appropriate place for it, given the surrounding text and taking into account other figures or tables that may be close by. You can find out more about adding images to your documents in this help article on \href{https://www.overleaf.com/learn/how-to/Including_images_on_Overleaf}{including images on Overleaf}.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.3\textwidth]{frog.jpg}
-\caption{\label{fig:frog}This frog was uploaded via the file-tree menu.}
-\end{figure}
-
-\subsection{How to add Comments and Track Changes}
-
-Comments can be added to your project by highlighting some text and clicking ``Add comment'' in the top right of the editor pane. To view existing comments, click on the Review menu in the toolbar above. To reply to a comment, click on the Reply button in the lower right corner of the comment. You can close the Review pane by clicking its name on the toolbar when you're done reviewing for the time being.
-
-Track changes are available on all our \href{https://www.overleaf.com/user/subscription/plans}{premium plans}, and can be toggled on or off using the option at the top of the Review pane. Track changes allow you to keep track of every change made to the document, along with the person making the change. 
-
-\subsection{How to add Lists}
-
-You can make lists with automatic numbering \dots
-
-\begin{enumerate}
-\item Like this,
-\item and like this.
-\end{enumerate}
-\dots or bullet points \dots
-\begin{itemize}
-\item Like this,
-\item and like this.
-\end{itemize}
-
-
-
-\subsection{How to change the margins and paper size}
-
-Usually the template you're using will have the page margins and paper size set correctly for that use-case. For example, if you're using a journal article template provided by the journal publisher, that template will be formatted according to their requirements. In these cases, it's best not to alter the margins directly.
-
-If however you're using a more general template, such as this one, and would like to alter the margins, a common way to do so is via the geometry package. You can find the geometry package loaded in the preamble at the top of this example file, and if you'd like to learn more about how to adjust the settings, please visit this help article on \href{https://www.overleaf.com/learn/latex/page_size_and_margins}{page size and margins}.
-
-\subsection{How to change the document language and spell check settings}
-
-Overleaf supports many different languages, including multiple different languages within one document. 
-
-To configure the document language, simply edit the option provided to the babel package in the preamble at the top of this example project. To learn more about the different options, please visit this help article on \href{https://www.overleaf.com/learn/latex/International_language_support}{international language support}.
-
-To change the spell check language, simply open the Overleaf menu at the top left of the editor window, scroll down to the spell check setting, and adjust accordingly.
-
-\subsection{How to add Citations and a References List}
-
-You can simply upload a \verb|.bib| file containing your BibTeX entries, created with a tool such as JabRef. You can then cite entries from it, like this: \cite{baker08}. Just remember to specify a bibliography style, as well as the filename of the \verb|.bib|. You can find a \href{https://www.overleaf.com/help/97-how-to-include-a-bibliography-using-bibtex}{video tutorial here} to learn more about BibTeX.
-
-If you have an \href{https://www.overleaf.com/user/subscription/plans}{upgraded account}, you can also import your Mendeley or Zotero library directly as a \verb|.bib| file, via the upload menu in the file-tree.
-
-\subsection{Good luck!}
-
-We hope you find Overleaf useful, and do take a look at our \href{https://www.overleaf.com/learn}{help library} for more tutorials and user guides! Please also let us know if you have any feedback using the Contact Us link at the bottom of the Overleaf menu --- or use the contact form at \url{https://www.overleaf.com/contact}.
-
 \bibliographystyle{alpha}
 \bibliography{references}
 
