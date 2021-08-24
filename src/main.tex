@@ -61,7 +61,7 @@ In particular, every metric graph, as we have defined them, may naturally be vie
 \newline
 Now fix a metric graph $\Gamma$. We want to develop a notion of divisors and rational functions on this graph, in parallel to the theory of divisors and rational functions on a smooth projective curve. The analog of meromorphic functions on a smooth projective curve over the complex numbers (or more generally algebraic rational functions on a smooth projective curve over an arbitrary algebraically closed field) will be played by $\textit{piecewise-linear}$ functions on the metric graph $\Gamma$, which are defined as follows. Given such a piecewise linear function $\phi$ on $\Gamma$, we want to associate to $\phi$ a divisor $\text{div}(\phi)$ on $\Gamma$, in much the same way that we can associate a divisor to any non-zero rational function on a smooth project curve. Divisors of this form on $\Gamma$ will play the role of principal divisors. 
 \section{Specialization Lemma}
-Our goal in this section is to define Baker's specialization map and state and prove his Specialization Lemma from \cite{baker08}, which will be our main tool for relating geometric information about a curve to certain combinatorial information. First, by way of setup, throughout this section we let $R$ denote a complete discrete valuation ring,  with field of fractions $K$ and algebrically closed residue field $\kappa$. We also give ourselves a smooth, projective, geometrically connected curve $X$ over $K$, which is our main geometric object of interest. We want to fill in a diagram of the form
+Our goal in this section is to define Baker's specialization map and state and prove his Specialization Lemma from \cite{baker08}, which will be our main tool for relating geometric information about a curve to certain combinatorial information. First, by way of setup, throughout this section we let $R$ denote a complete discrete valuation ring,  with field of fractions $K$ and algebraically closed residue field $\kappa$. We also give ourselves a smooth, projective, geometrically connected curve $X$ over $K$, which is our main geometric object of interest. We want to fill in a diagram of the form
 \[
 \begin{tikzcd}
 X \arrow[d] \arrow[r, hook]    & \mathcal{X} \arrow[d] & \mathcal{X}_{\kappa} \arrow[d] \arrow[l, hook'] \\
@@ -70,20 +70,40 @@ X \arrow[d] \arrow[r, hook]    & \mathcal{X} \arrow[d] & \mathcal{X}_{\kappa} \a
 such that $\mathcal{X}$, which we think of as the total space of an infinitesimal family of curves over $\text{Spec}(R)$, is regular and flat over $\text{Spec}(R)$, and the special fiber $\mathcal{X}_{\kappa}$ is reduced with only ordinary double points as singularities and has smooth irreducible components $\{C_1, \cdots C_k\}$. Such a $\mathcal{X}$ is called a $\textit{strongly regular semistable model}$ of the curve $X$ (\textit{strong} refers to the smoothness of the irreducible components $C_i$). Both the regularity and the flatness of $\mathcal{X}$ over $\text{Spec}(R)$ will be used crucially in order to define the specialization map, as we will explain. 
 \newline
 \newline
+It will be very useful in what follows to observe that Weil divisors on $\mathcal{X}$ (which are naturally in bijection with Cartier divisors as $\mathcal{X}$ is regular) fall into two categories. There are those which are supported on the special fiber $\mathcal{X}_{\kappa}$, which are commonly referred to as $\textit{vertical}$ divisors, and there are those which are Zariski closures of divisors supported on the generic fiber, referred to as $\textit{horizontal}$ divisors. Every divisor on $\mathcal{X}$ may be written uniquely as a sum of vertical and horizontal divisors.  
+\newline
+\newline
 The combinatorial information referenced in the previous paragraph will be the so-called $\textit{dual graph}$ of the special fiber $\mathcal{X}_{\kappa}$. This graph, denoted $G(\mathcal{X}_{\kappa})$, has one vertex $v_i$ for each component $C_i$, and one edge between vertices $v_i$ and $v_j$ for each point of intersection of the components $C_i$ and $C_j$. Note that because each component $C_i$ is smooth by assumption, the graph $G(\mathcal{X}_{\kappa})$ has no loops, although it may have multiple edges, as per our conventions in [$\ref{analog}$]
 \newline
 \newline
 We will need the following lemma on extending line bundles from the generic fiber in order to define Baker's Specialization Map:
 \begin{lemma}
+\label{extend}
 Notation as above, any line bundle $L$ on the generic fiber $X$ extends to a line bundle $\mathcal{L}$ on the total space $\mathcal{X}$. Furthermore, such an extension is unique up to twisting by components of the special fiber, i.e. is of the form $\mathcal{L}\otimes_{\mathcal{O}_{\mathcal{X}}}\mathcal{O}_{\mathcal{X}}(C_i)$ after fixing one extension $\mathcal{L}$.  
 \end{lemma}
-\textbf{Proof.} We first show the existence of an extension of $L$ to the total space $X$. We need the fact that on regular schemes, there is a  Because $X$ is smooth, $L$ is uniquely determined by a Weil Divisor on $X$. We may then consider the Zariski closure of this Weil Divisor in $\mathcal{X}$. Because $\mathcal{X}$ is regular, there is a one-to-one correspondence between Weil Divisors and line bundles on $\mathcal{X}$. Thus this Zariski closure corresponds to some line bundle.
+\textbf{Proof.} To see the existence of an extension of $L$ to $\mathcal{X}$, represent $L$ by some Weil Divisor. Then the line bundle associated to the Zariski closure in $\mathcal{X}$ of this Weil divisor will give a desired extension. Because every Weil divisor on $\mathcal{X}$ can be written uniquely as a sum of horizontal and vertical divisors, we see that this extended Weil divisor is unique up to adding vertical divisors. But adding a vertical divisor exactly corresponds to twisting the associated line bundle by a component $C_i$ of the special fiber. 
 \newline
 \newline
-To see the uniqueness up to twisting part of the lemma, note that the Zariski closure can only include some extra "vertical" divisors. Under the correspondence, these extra vertical divisors exactly correspond to twisting by these divisors. 
+We will now show how chip-firing enters the picture. The idea is that associated to each line bundle $L\in \text{Pic}(X)$, we will produce a divisor on the graph $G(\mathcal{X}_{\mathcal{\kappa}})$. This proceeds by first extending $L$ to $\mathcal{X}$, and then restricting $\mathcal{L}$ to each component $C_i$. Because each $C_i$ is a smooth curve, the restriction of $\mathcal{L}$ to $C_i$ has a well defined degree. This degree will be the coefficient of the vertex $v_i$ corresponding to the component $C_i$ in the divisor we are producing. We formalize this in the following definition.
+\begin{definition}
+Given a line bundle $\mathcal{L}\in \text{Pic}(\mathcal{X})$, the divisor $D(\mathcal{L})\in \text{Div}(G(\mathcal{X}_{\mathcal{\kappa}}))$ is defined by
+\[
+D(\mathcal{L}) := \sum_{i = 1}^{k} \text{deg}(\mathcal{L}|_{C_i})v_i,
+\]
+where $v_i$ is the vertex corresponding to the component $C_i$. 
+\end{definition}
+If we want to extend this definition to map line bundles on $X$ to divisors on $G(\mathcal{X}_{\mathcal{\kappa}})$, the issue we run into is that the extension $\mathcal{L}$ in not unique. However, by Lemma \ref{extend}, the extension is unique up to twisting by a component of the special fiber. Thus, in order to understand the failure of this non-uniqueness, we just need to understand how $D(\mathcal{L})$ changes when we twist $\mathcal{L}$ by some $C_i$. For this, we have the following lemma, which brings the combinatorics of chip-firing into the picture.
+\begin{lemma}
+Given a line bundle $\mathcal{L}\in \text{Pic}(\mathcal{X})$ and a component $C_i$ of $\mathcal{X}_{\kappa}$, the divisor
+\[
+\text{Div}(\mathcal{L}\otimes_{\mathcal{O}_{\mathcal{X}}}\mathcal{O}_{\mathcal{X}}(C_i))
+\]
+is obtained from the divisor $\text{Div}(\mathcal{L})$ by performing a chip-firing move the vertex $v_i$. 
+\end{lemma}
+\textbf{Proof} It will be convenient for the proof to work in terms of Weil divisors on $\mathcal{X}$ instead of line bundles, which is allowed as $\mathcal{X}$ is regular. 
 \newline
 \newline
-We also need the following lemma on comparing the degrees of the restrictions of line bundles on $\mathcal{X}$ to the generic and special fibers:
+We will also need the following lemma on comparing the degrees of the restrictions of line bundles on $\mathcal{X}$ to the generic and special fibers:
 \begin{lemma}
 Notation as above, let $\mathcal{L}$ be a line bundle on $\mathcal{X}$. Then we have the equality
 \[
@@ -94,7 +114,7 @@ Notation as above, let $\mathcal{L}$ be a line bundle on $\mathcal{X}$. Then we 
 \[
 \text{deg}(\mathcal{L}|_X)= \mathcal{X}(\mathcal{L}_X) + g - 1
 \]
-Because $\mathcal{X}$ is flat over $\text{Spec}(R)$, using the fact that the Euler characteristic of line bundle is constant for flat familes, we have 
+Because $\mathcal{X}$ is flat over $\text{Spec}(R)$, using the fact that the Euler characteristic of line bundle is constant for flat families, we have 
 \[
 \mathcal{X}(\mathcal{L}|_X) = \mathcal{X}(\mathcal{L}_{\mathcal{X}_{\mathcal{\kappa}}})
 \]
@@ -105,10 +125,9 @@ By considering the pullback of $\mathcal{L}|_{\mathcal{X}_{\kappa}}$ to the norm
 \]
 \newline
 \newline
-But because $\mathcal{X}_{\kappa}$ is reduced, we have 
 \newline
 \newline
-The reason we need to be considering metric graphs as opposed to just ordinary graphs has to do with ramification. 
+The source of Baker's Specialization map will be the group $\text{Pic}(X)$ of line bundles on $X$. To describe the target, we need the following definition which associated a group to any graph (recall our conventions on graphs from \ref{analog}). 
 \bibliographystyle{alpha}
 \bibliography{references}
 
